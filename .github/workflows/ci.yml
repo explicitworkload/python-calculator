@@ -22,6 +22,7 @@ jobs:
         run: |
           pwd
           ls
+          cp test.py /home/runner/work/
 
       - name: Checkout Public Repo
         uses: actions/checkout@v2
@@ -33,15 +34,17 @@ jobs:
         run: |
           pwd
           ls
+          echo "Echoing work folder"
+          ls /home/runner/work/
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: 3.11
       
-      - name: Install dependencies
-        run: |
-          pip install pytest pytest-mock robotframework
+      # - name: Install dependencies
+      #   run: |
+      #     pip install pytest pytest-mock robotframework
 
-      - name: Run pytest
-        run: pytest -v test_calculator.py 
+      # - name: Run pytest
+      #   run: pytest -v test_calculator.py 

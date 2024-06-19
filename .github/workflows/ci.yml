@@ -11,11 +11,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      - name: Checkout Public Repo
+        uses: actions/checkout@v2
+        with:
+          repository: explicitworkload/helloworld-python
+          ref: main
+
+      - name: Print and list out content
+        run: |
+          pwd
+          ls
+
       - name: Checkout Public Repo
         uses: actions/checkout@v2
         with:
           repository: explicitworkload/python-calculator
           ref: main
+
+      - name: Print and list out content
+        run: |
+          pwd
+          ls
 
       - name: Set up Python
         uses: actions/setup-python@v2

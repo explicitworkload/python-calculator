@@ -37,10 +37,10 @@ jobs:
           echo "Echoing work folder"
           ls /home/runner/work/
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.11
+      # - name: Set up Python
+      #   uses: actions/setup-python@v2
+      #   with:
+      #     python-version: 3.11
       
       # - name: Install dependencies
       #   run: |
@@ -48,3 +48,12 @@ jobs:
 
       # - name: Run pytest
       #   run: pytest -v test_calculator.py 
+
+      - name: Extract release notes
+        id: extract-release-notes
+        uses: ffurrer2/extract-release-notes@v2
+      - name: Create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create --notes '${{ steps.extract-release-notes.outputs.release_notes }}' --title ${{ github.ref_name }} ${{ github.ref_name }}
+        

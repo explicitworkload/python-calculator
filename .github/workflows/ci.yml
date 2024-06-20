@@ -30,13 +30,6 @@ jobs:
           repository: explicitworkload/python-calculator
           ref: main
 
-      - name: Print and list out content
-        run: |
-          pwd
-          ls
-          echo "Echoing work folder"
-          ls /home/runner/work/
-
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -48,6 +41,13 @@ jobs:
 
       - name: Run pytest
         run: pytest -v test_calculator.py 
+
+      - name: Print and list out content
+        run: |
+          pwd
+          ls
+          echo "Echoing work folder"
+          ls /home/runner/work/
 
       - name: Create a Release
         uses: elgohr/Github-Release-Action@v5
